@@ -48,12 +48,6 @@ def main():
         page_icon=":newspaper:",
         layout="wide",  # "centered" or "wide"
         initial_sidebar_state="auto",  # "auto", "expanded", "collapsed"
-        # Set custom theme colors with a cool warm palette
-        primaryColor="#E76F51",  # warm primary accent
-        backgroundColor="#F4A261",  # warm background color
-        textColor="#264653",  # cool text color
-        sidebarColor="#2A9D8F",  # cool sidebar background color
-        sidebarTextColor="#FFFFFF",  # white sidebar text color
         )
 
     # Creates a main title and subheader on your page -
@@ -161,4 +155,3 @@ def main():
 # Required to let Streamlit instantiate our web app.  
 if __name__ == '__main__':
     main()
-
