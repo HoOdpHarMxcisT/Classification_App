@@ -48,7 +48,7 @@ def main():
     st.subheader("Analyzing news articles")
 
     # Define navigation menu options
-    menu = ["Home", "Prediction", "Information"]
+    menu = ["Home", "Prediction", "Information", "About Us"]
     choice = st.sidebar.selectbox('Navigation', menu)
 
     # Building out the selected page
@@ -61,6 +61,9 @@ def main():
     elif choice == 'Information':
         show_information_page()
 
+    elif choice == 'About Us':
+        show_about_us_page()
+
 
 def show_homepage():
     st.info("Welcome to DataInsight Solutions!")
@@ -70,38 +73,9 @@ def show_homepage():
     # Insert an image on the homepage
     st.image("Homepage.jpg", caption="The power of predictive analysis is within your reach", use_column_width=True)
 
-    # Insert case study content
-    st.subheader("Case Study: Enhancing News Classification")
-    st.markdown("""
-    In today’s digital age, efficiently managing the vast amount of news content is a significant challenge for news outlets. Our team at DataInsight Solutions has been brought on board as data science consultants to develop a sophisticated news classification system. This project will use machine learning and natural language processing (NLP) to improve content categorization and enhance the reader experience.
-
-    Our purpose is to ensure accurate classification of news articles, optimizing content management for the outlet and providing a more personalized experience for readers.
-
-    The key stakeholders who will benefit from our solution are:
-
-    - **Editorial Team:** Simplified workflows and better article organization.
-    - **IT/Tech Support:** Easy integration and deployment of advanced models.
-    - **Management:** Increased operational efficiency and valuable strategic insights.
-    - **Readers:** More personalized and engaging news content.
-
-    DataInsight Solutions aims to showcase the practical application of data science in solving real-world problems. Our project will emphasize the importance of thorough data preprocessing, selecting appropriate models, and rigorous performance evaluation. Deploying our solution with Streamlit ensures accessibility and usability for non-technical stakeholders.
-    """)
-
     # Insert video on the homepage
     st.subheader("Reporting live: Political Scandal Unveiled, High-level Corruption Exposed")
     st.video("Breaking News Video.mp4")
-
-    st.markdown("### Services We Offer:")
-    st.markdown("""
-    - **Data Strategy and Consulting**
-    - **Machine Learning and Artificial Intelligence**
-    - **Natural Language Processing (NLP)**
-    - **Data Engineering**
-    - **Data Visualization and Reporting**
-    - **Cloud Solutions**
-    - **Advanced Analytics**
-    - **Training and Workshops**
-    """)
 
 
 def show_prediction_page():
@@ -168,6 +142,38 @@ def show_information_page():
     ### Contact Us
 
     For more information or support, please contact us at [support@datainsight.com](mailto:support@datainsight.com).
+    """)
+
+
+def show_about_us_page():
+    st.info("About Us")
+    st.markdown("""
+    ### Founding Story of DataInsight Solutions
+
+    Founded in 2015 in South Africa, DataInsight Solutions emerged from the vision of a team of passionate data scientists and industry experts. Recognizing the transformative potential of data, our journey began with a commitment to bridging the gap between data and decision-making for businesses.
+
+    From our modest beginnings, we have grown into a trusted partner, employing and training over 200 data practitioners. Our foundation is built on innovation, integrity, and a client-centric approach, driving us to continually explore new frontiers in data science, machine learning, and artificial intelligence.
+
+    ### Purpose of DataInsight Solutions
+
+    At DataInsight Solutions, our purpose is to empower businesses with actionable insights derived from data. We believe in harnessing the power of data science and analytics to solve complex challenges, drive innovation, and enable informed decision-making across industries.
+
+    ### Vision of DataInsight Solutions
+
+    Our vision at DataInsight Solutions is to be a leading provider of data-driven solutions globally. We strive to be recognized for our expertise in transforming data into valuable insights that drive business growth, enhance operational efficiency, and deliver exceptional value to our clients.
+    """)
+
+    # Move services information here
+    st.markdown("### Services We Offer:")
+    st.markdown("""
+    - **Data Strategy and Consulting**
+    - **Machine Learning and Artificial Intelligence**
+    - **Natural Language Processing (NLP)**
+    - **Data Engineering**
+    - **Data Visualization and Reporting**
+    - **Cloud Solutions**
+    - **Advanced Analytics**
+    - **Training and Workshops**
     """)
 
 

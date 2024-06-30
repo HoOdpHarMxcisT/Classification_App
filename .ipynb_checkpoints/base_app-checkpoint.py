@@ -47,103 +47,136 @@ def main():
     st.title("DataInsight News Classifier")
     st.subheader("Analyzing news articles")
 
-    # Creating sidebar with selection box -
-    # you can create multiple pages this way
-    options = ["Home", "Prediction", "Information"]
-    selection = st.sidebar.selectbox("Choose Option", options)
+    # Define navigation menu options
+    menu = ["Home", "Prediction", "Information", "About Us"]
+    choice = st.sidebar.selectbox('Navigation', menu)
 
-    # Building out the "Home" page
-    if selection == "Home":
-        st.info("Welcome to DataInsight Solutions!")
-        st.markdown("This app allows you to classify news articles using machine learning models. "
-                    "You can navigate to the Prediction page to classify new articles or visit the Information page to learn more about the app.")
-        
-        # Insert an image on the homepage
-        st.image("Homepage.jpg", caption="The power of predictive analysis is within your reach", use_column_width=True)
-        
-        # Insert video on the homepage
-        st.subheader("Reporting live: Political Scandal Unveiled, High-level Corruption Exposed")
-        st.video("Breaking News Video.mp4")
+    # Building out the selected page
+    if choice == 'Home':
+        show_homepage()
 
-        st.markdown("### Services We Offer:")
-        st.markdown("""
-        - **Data Strategy and Consulting**
-        - **Machine Learning and Artificial Intelligence**
-        - **Natural Language Processing (NLP)**
-        - **Data Engineering**
-        - **Data Visualization and Reporting**
-        - **Cloud Solutions**
-        - **Advanced Analytics**
-        - **Training and Workshops**
-        """)
+    elif choice == 'Prediction':
+        show_prediction_page()
 
-    # Building out the "Information" page
-    if selection == "Information":
-        st.info("How the App Works")
-        st.markdown("""
-        ### How to Use the News Classifier App
+    elif choice == 'Information':
+        show_information_page()
 
-        1. **Navigate to the Prediction Page:**
-           - Use the sidebar to select the "Prediction" option.
+    elif choice == 'About Us':
+        show_about_us_page()
 
-        2. **Enter Your Text:**
-           - In the text area provided, type or paste the news article you want to classify.
 
-        3. **Classify the Text:**
-           - Click the "Classify" button. The app will use a pre-trained machine learning model to analyze and classify the text.
+def show_homepage():
+    st.info("Welcome to DataInsight Solutions!")
+    st.markdown("This app allows you to classify news articles using machine learning models. "
+                "You can navigate to the Prediction page to classify new articles or visit the Information page to learn more about the app.")
 
-        4. **View the Result:**
-           - The classification result will be displayed on the screen, indicating the category of the news article.
+    # Insert an image on the homepage
+    st.image("Homepage.jpg", caption="The power of predictive analysis is within your reach", use_column_width=True)
 
-        ### Behind the Scenes
+    # Insert video on the homepage
+    st.subheader("Reporting live: Political Scandal Unveiled, High-level Corruption Exposed")
+    st.video("Breaking News Video.mp4")
 
-        - **Data Preprocessing:**
-          The text you input is preprocessed to remove any noise and convert it into a format suitable for the machine learning model.
 
-        - **Vectorization:**
-          The cleaned text is transformed into numerical vectors using a technique called TF-IDF (Term Frequency-Inverse Document Frequency).
+def show_prediction_page():
+    st.info("Prediction with ML Models")
+    # Creating a text box for user input
+    news_text = st.text_area("Enter Text", "Type Here")
 
-        - **Prediction:**
-          The vectorized text is fed into a machine learning model (e.g., Logistic Regression) to predict the category of the news article.
+    if st.button("Classify"):
+        # Transforming user input with vectorizer
+        vect_text = test_cv.transform([news_text]).toarray()
+        # Load your .pkl file with the model of your choice + make predictions
+        # Try loading in multiple models to give the user a choice
+        predictor = joblib.load(open(os.path.join("streamlit/Logistic_regression.pkl"), "rb"))
+        prediction = predictor.predict(vect_text)
 
-        - **Output:**
-          The predicted category is displayed to the user in a human-readable format.
+        # When model has successfully run, will print prediction
+        # You can use a dictionary or similar structure to make this output
+        # more human interpretable.
+        st.success("Text Categorized as: {}".format(prediction))
 
-        ### Benefits of Using the App
 
-        - **Quick and Accurate Classification:**
-          Our app leverages advanced machine learning algorithms to provide fast and accurate classification of news articles.
+def show_information_page():
+    st.info("How the App Works")
+    st.markdown("""
+    ### How to Use the News Classifier App
 
-        - **User-Friendly Interface:**
-          The app is designed to be intuitive and easy to use, even for those without a technical background.
+    1. **Navigate to the Prediction Page:**
+       - Use the sidebar to select the "Prediction" option.
 
-        - **Versatile Applications:**
-          Whether you're a journalist, researcher, or just someone interested in categorizing news, this app can be a valuable tool.
+    2. **Enter Your Text:**
+       - In the text area provided, type or paste the news article you want to classify.
 
-        ### Contact Us
+    3. **Classify the Text:**
+       - Click the "Classify" button. The app will use a pre-trained machine learning model to analyze and classify the text.
 
-        For more information or support, please contact us at [support@datainsight.com](mailto:support@datainsight.com).
-        """)
+    4. **View the Result:**
+       - The classification result will be displayed on the screen, indicating the category of the news article.
 
-    # Building out the prediction page
-    if selection == "Prediction":
-        st.info("Prediction with ML Models")
-        # Creating a text box for user input
-        news_text = st.text_area("Enter Text", "Type Here")
+    ### Behind the Scenes
 
-        if st.button("Classify"):
-            # Transforming user input with vectorizer
-            vect_text = test_cv.transform([news_text]).toarray()
-            # Load your .pkl file with the model of your choice + make predictions
-            # Try loading in multiple models to give the user a choice
-            predictor = joblib.load(open(os.path.join("streamlit/Logistic_regression.pkl"), "rb"))
-            prediction = predictor.predict(vect_text)
+    - **Data Preprocessing:**
+      The text you input is preprocessed to remove any noise and convert it into a format suitable for the machine learning model.
 
-            # When model has successfully run, will print prediction
-            # You can use a dictionary or similar structure to make this output
-            # more human interpretable.
-            st.success("Text Categorized as: {}".format(prediction))
+    - **Vectorization:**
+      The cleaned text is transformed into numerical vectors using a technique called TF-IDF (Term Frequency-Inverse Document Frequency).
 
-# Required to let Streamlit instantiate our web app.  
+    - **Prediction:**
+      The vectorized text is fed into a machine learning model (e.g., Logistic Regression) to predict the category of the news article.
+
+    - **Output:**
+      The predicted category is displayed to the user in a human-readable format.
+
+    ### Benefits of Using the App
+
+    - **Quick and Accurate Classification:**
+      Our app leverages advanced machine learning algorithms to provide fast and accurate classification of news articles.
+
+    - **User-Friendly Interface:**
+      The app is designed to be intuitive and easy to use, even for those without a technical background.
+
+    - **Versatile Applications:**
+      Whether you're a journalist, researcher, or just someone interested in categorizing news, this app can be a valuable tool.
+
+    ### Contact Us
+
+    For more information or support, please contact us at [support@datainsight.com](mailto:support@datainsight.com).
+    """)
+
+
+def show_about_us_page():
+    st.info("About Us")
+    st.markdown("""
+    ### Founding Story of DataInsight Solutions
+
+    Founded in 2015 in South Africa, DataInsight Solutions emerged from the vision of a team of passionate data scientists and industry experts. Recognizing the transformative potential of data, our journey began with a commitment to bridging the gap between data and decision-making for businesses.
+
+    From our modest beginnings, we have grown into a trusted partner, employing and training over 200 data practitioners. Our foundation is built on innovation, integrity, and a client-centric approach, driving us to continually explore new frontiers in data science, machine learning, and artificial intelligence.
+
+    ### Purpose of DataInsight Solutions
+
+    At DataInsight Solutions, our purpose is to empower businesses with actionable insights derived from data. We believe in harnessing the power of data science and analytics to solve complex challenges, drive innovation, and enable informed decision-making across industries.
+
+    ### Vision of DataInsight Solutions
+
+    Our vision at DataInsight Solutions is to be a leading provider of data-driven solutions globally. We strive to be recognized for our expertise in transforming data into valuable insights that drive business growth, enhance operational efficiency, and deliver exceptional value to our clients.
+    """)
+
+    # Move services information here
+    st.markdown("### Services We Offer:")
+    st.markdown("""
+    - **Data Strategy and Consulting**
+    - **Machine Learning and Artificial Intelligence**
+    - **Natural Language Processing (NLP)**
+    - **Data Engineering**
+    - **Data Visualization and Reporting**
+    - **Cloud Solutions**
+    - **Advanced Analytics**
+    - **Training and Workshops**
+    """)
+
+
+# Required to let Streamlit instantiate our web app.
 if __name__ == '__main__':
     main()
