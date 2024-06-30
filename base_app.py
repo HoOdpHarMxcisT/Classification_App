@@ -39,6 +39,9 @@ import pandas as pd
 def main():
     """News Classifier App with Streamlit"""
 
+    # Insert your logo above the title
+    st.image("logo.png", use_column_width=True)
+
     # Creates a main title and subheader on your page -
     # these are static across all pages
     st.title("DataInsight News Classifier")
@@ -49,15 +52,24 @@ def main():
     options = ["Home", "Prediction", "Information"]
     selection = st.sidebar.selectbox("Choose Option", options)
 
+    # Set background color using HTML and CSS
+    st.markdown(
+        """
+        <style>
+        .reportview-container {
+            background: linear-gradient(to right, #ffb347, #ffcc33); /* Replace with your chosen color palette */
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
     # Building out the "Home" page
     if selection == "Home":
         st.info("Proudly brought to you by DataInsight Solutions!")
         st.markdown("This app allows you to classify news articles using machine learning models. "
                     "You can navigate to the Prediction page to classify new articles or visit the Information page to learn more about the app.")
         
-        # Insert your logo
-        st.image("Datainsight_Logo.png", width=200)  # Adjust width as necessary
-
         st.markdown("### Services We Offer:")
         st.markdown("""
         - **Data Strategy and Consulting**
@@ -140,5 +152,3 @@ def main():
 # Required to let Streamlit instantiate our web app.  
 if __name__ == '__main__':
     main()
-
-
