@@ -60,9 +60,11 @@ def main():
         
         # Insert an image on the homepage
         st.image("Homepage.jpg", caption="The power of predictive analysis is within your reach", use_column_width=True)
+
+
         
         # Insert case study content
-        st.subheader("Case Study: Enhancing News Classification")
+        st.subheader("Enhancing News Classification")
         st.markdown("""
         In today’s digital age, efficiently managing the vast amount of news content is a significant challenge for news outlets. Our team at DataInsight Solutions has been brought on board as data science consultants to develop a sophisticated news classification system. This project will use machine learning and natural language processing (NLP) to improve content categorization and enhance the reader experience.
 
