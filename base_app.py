@@ -40,7 +40,7 @@ def main():
     """News Classifier App with Streamlit"""
 
     # Insert your logo above the title
-    st.image("logo.png", use_column_width=True)
+    st.image("Datainsight_Logo.png", use_column_width=True)
 
     # Creates a main title and subheader on your page -
     # these are static across all pages
