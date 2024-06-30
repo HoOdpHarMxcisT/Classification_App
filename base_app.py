@@ -88,7 +88,7 @@ def show_homepage():
     - **Readers:** More personalized and engaging news content.
     """)
 
-    st.markdown("**Grow your business with us.** [Click here to find out more](#About_Us)")
+    st.markdown("**Grow your business with us** [Click here to find out more](#about-us)")
 
     # Insert video on the homepage
     st.subheader("Reporting live: Political Scandal Unveiled, High-level Corruption Exposed")
@@ -193,8 +193,21 @@ def show_about_us_page():
     - **Training and Workshops**
     """)
 
+    # Add the team section
+    st.markdown("### The Minds Behind the App")
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.image("Lead Data scientist.jpg", caption="Clement Mphethi", width=200)
+    
+    with col2:
+        st.image("Project Manager.jpg", caption="Nolwazi Mndebele", width=200)
+    
+    with col3:
+        st.image("Github Manager.jpg", caption="Tshepiso Mudau", width=200)
+
 
 # Required to let Streamlit instantiate our web app.
 if __name__ == '__main__':
     main()
-
