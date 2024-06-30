@@ -54,9 +54,10 @@ def main():
         st.info("Proudly brought to you by DataInsight Solutions!")
         st.markdown("This app allows you to classify news articles using machine learning models. "
                     "You can navigate to the Prediction page to classify new articles or visit the Information page to learn more about the app.")
-        # Insert an image on the homepage
-        st.image("Homepage.jpg", caption="The power predictive models is within your reach", use_column_width=True)
         
+        # Insert your logo
+        st.image("Datainsight_Logo.png", width=200)  # Adjust width as necessary
+
         st.markdown("### Services We Offer:")
         st.markdown("""
         - **Data Strategy and Consulting**
@@ -139,4 +140,5 @@ def main():
 # Required to let Streamlit instantiate our web app.  
 if __name__ == '__main__':
     main()
+
 

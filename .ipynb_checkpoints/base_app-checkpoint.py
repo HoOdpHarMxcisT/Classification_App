@@ -41,7 +41,7 @@ def main():
 
     # Creates a main title and subheader on your page -
     # these are static across all pages
-    st.title("News Classifier")
+    st.title("DataInsight News Classifier")
     st.subheader("Analyzing news articles")
 
     # Creating sidebar with selection box -
@@ -51,12 +51,13 @@ def main():
 
     # Building out the "Home" page
     if selection == "Home":
-        st.info("Welcome to DataInsight Solutions!")
+        st.info("Proudly brought to you by DataInsight Solutions!")
         st.markdown("This app allows you to classify news articles using machine learning models. "
                     "You can navigate to the Prediction page to classify new articles or visit the Information page to learn more about the app.")
-        # Insert an image on the homepage
-        st.image("Homepage.jpg", caption="Welcome to the News DataInsight Solutions!", use_column_width=True)
         
+        # Insert your logo
+        st.image("Datainsight_Logo.png", width=200)  # Adjust width as necessary
+
         st.markdown("### Services We Offer:")
         st.markdown("""
         - **Data Strategy and Consulting**
@@ -139,4 +140,5 @@ def main():
 # Required to let Streamlit instantiate our web app.  
 if __name__ == '__main__':
     main()
+
 
