@@ -47,19 +47,19 @@ def main():
     st.title("DataInsight News Classifier")
     st.subheader("Analyzing news articles")
 
-    # Define navigation menu options
-    menu = ["Home", "Prediction", "Information", "About Us"]
+    # Define navigation menu options in the desired order
+    menu = ["Home", "Information", "Prediction", "About Us"]
     choice = st.sidebar.selectbox('Navigation', menu)
 
     # Building out the selected page
     if choice == 'Home':
         show_homepage()
 
-    elif choice == 'Prediction':
-        show_prediction_page()
-
     elif choice == 'Information':
         show_information_page()
+
+    elif choice == 'Prediction':
+        show_prediction_page()
 
     elif choice == 'About Us':
         show_about_us_page()
@@ -73,28 +73,36 @@ def show_homepage():
     # Insert an image on the homepage
     st.image("Homepage.jpg", caption="The power of predictive analysis is within your reach", use_column_width=True)
 
+    # Insert case study content
+    st.subheader("Case Study: Enhancing News Classification")
+    st.markdown("""
+    In today’s digital age, efficiently managing the vast amount of news content is a significant challenge for news outlets. Our team at DataInsight Solutions has been brought on board as data science consultants to develop a sophisticated news classification system. We will use machine learning and natural language processing (NLP) to improve content categorization and enhance the reader experience.
+
+    We will build an end-to-end system that includes data loading, preprocessing, model training, evaluation and deployment through a user-friendly Streamlit interface. This will ensure accurate classification of news articles, optimizing content management for the outlet and providing a more personalized experience for readers.
+
+    The key stakeholders who will benefit from our solution are:
+
+    - **Editorial Team:** Simplified workflows and better article organization.
+    - **IT/Tech Support:** Easy integration and deployment of advanced models.
+    - **Management:** Increased operational efficiency and valuable strategic insights.
+    - **Readers:** More personalized and engaging news content.
+    """)
+
     # Insert video on the homepage
     st.subheader("Reporting live: Political Scandal Unveiled, High-level Corruption Exposed")
     st.video("Breaking News Video.mp4")
 
-
-def show_prediction_page():
-    st.info("Prediction with ML Models")
-    # Creating a text box for user input
-    news_text = st.text_area("Enter Text", "Type Here")
-
-    if st.button("Classify"):
-        # Transforming user input with vectorizer
-        vect_text = test_cv.transform([news_text]).toarray()
-        # Load your .pkl file with the model of your choice + make predictions
-        # Try loading in multiple models to give the user a choice
-        predictor = joblib.load(open(os.path.join("streamlit/Logistic_regression.pkl"), "rb"))
-        prediction = predictor.predict(vect_text)
-
-        # When model has successfully run, will print prediction
-        # You can use a dictionary or similar structure to make this output
-        # more human interpretable.
-        st.success("Text Categorized as: {}".format(prediction))
+    st.markdown("### Services We Offer:")
+    st.markdown("""
+    - **Data Strategy and Consulting**
+    - **Machine Learning and Artificial Intelligence**
+    - **Natural Language Processing (NLP)**
+    - **Data Engineering**
+    - **Data Visualization and Reporting**
+    - **Cloud Solutions**
+    - **Advanced Analytics**
+    - **Training and Workshops**
+    """)
 
 
 def show_information_page():
@@ -143,6 +151,25 @@ def show_information_page():
 
     For more information or support, please contact us at [support@datainsight.com](mailto:support@datainsight.com).
     """)
+
+
+def show_prediction_page():
+    st.info("Prediction with ML Models")
+    # Creating a text box for user input
+    news_text = st.text_area("Enter Text", "Type Here")
+
+    if st.button("Classify"):
+        # Transforming user input with vectorizer
+        vect_text = test_cv.transform([news_text]).toarray()
+        # Load your .pkl file with the model of your choice + make predictions
+        # Try loading in multiple models to give the user a choice
+        predictor = joblib.load(open(os.path.join("streamlit/Logistic_regression.pkl"), "rb"))
+        prediction = predictor.predict(vect_text)
+
+        # When model has successfully run, will print prediction
+        # You can use a dictionary or similar structure to make this output
+        # more human interpretable.
+        st.success("Text Categorized as: {}".format(prediction))
 
 
 def show_about_us_page():
