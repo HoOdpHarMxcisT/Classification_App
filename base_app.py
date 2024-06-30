@@ -42,14 +42,6 @@ def main():
     # Insert your logo above the title
     st.image("Datainsight_Logo.png", width=200)
 
-    # Customize Streamlit app theme
-    st.set_page_config(
-        page_title="DataInsight News Classifier App",
-        page_icon=":newspaper:",
-        layout="wide",  # "centered" or "wide"
-        initial_sidebar_state="auto",  # "auto", "expanded", "collapsed"
-        )
-
     # Creates a main title and subheader on your page -
     # these are static across all pages
     st.title("DataInsight News Classifier")
