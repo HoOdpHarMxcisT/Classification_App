@@ -74,7 +74,7 @@ def show_homepage():
     st.image("Homepage.jpg", caption="The power of predictive analysis is within your reach", use_column_width=True)
 
     # Insert case study content
-    st.subheader("Case Study: Enhancing News Classification")
+    st.subheader("Enhancing News Classification")
     st.markdown("""
     In today’s digital age, efficiently managing the vast amount of news content is a significant challenge for news outlets. Our team at DataInsight Solutions has been brought on board as data science consultants to develop a sophisticated news classification system. We will use machine learning and natural language processing (NLP) to improve content categorization and enhance the reader experience.
 
@@ -88,21 +88,11 @@ def show_homepage():
     - **Readers:** More personalized and engaging news content.
     """)
 
+    st.markdown("**Grow your business with us.** [Click here to find out more](#About_Us)")
+
     # Insert video on the homepage
     st.subheader("Reporting live: Political Scandal Unveiled, High-level Corruption Exposed")
     st.video("Breaking News Video.mp4")
-
-    st.markdown("### Services We Offer:")
-    st.markdown("""
-    - **Data Strategy and Consulting**
-    - **Machine Learning and Artificial Intelligence**
-    - **Natural Language Processing (NLP)**
-    - **Data Engineering**
-    - **Data Visualization and Reporting**
-    - **Cloud Solutions**
-    - **Advanced Analytics**
-    - **Training and Workshops**
-    """)
 
 
 def show_information_page():
@@ -207,3 +197,4 @@ def show_about_us_page():
 # Required to let Streamlit instantiate our web app.
 if __name__ == '__main__':
     main()
+
