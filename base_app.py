@@ -61,7 +61,25 @@ def main():
         # Insert an image on the homepage
         st.image("Homepage.jpg", caption="The power of predictive analysis is within your reach", use_column_width=True)
         
+        # Insert case study content
+        st.subheader("Case Study: Enhancing News Classification")
+        st.markdown("""
+        In today’s digital age, efficiently managing the vast amount of news content is a significant challenge for news outlets. Our team at DataInsight Solutions has been brought on board as data science consultants to develop a sophisticated news classification system. This project will use machine learning and natural language processing (NLP) to improve content categorization and enhance the reader experience.
+
+        Our purpose is to ensure accurate classification of news articles, optimizing content management for the outlet and providing a more personalized experience for readers.
+
+        The key stakeholders who will benefit from our solution are:
+
+        - **Editorial Team:** Simplified workflows and better article organization.
+        - **IT/Tech Support:** Easy integration and deployment of advanced models.
+        - **Management:** Increased operational efficiency and valuable strategic insights.
+        - **Readers:** More personalized and engaging news content.
+
+        DataInsight Solutions aims to showcase the practical application of data science in solving real-world problems. Our project will emphasize the importance of thorough data preprocessing, selecting appropriate models, and rigorous performance evaluation. Deploying our solution with Streamlit ensures accessibility and usability for non-technical stakeholders.
+        """)
+
         # Insert video on the homepage
+        st.markdown("### In today's news...")
         st.subheader("Reporting live: Political Scandal Unveiled, High-level Corruption Exposed")
         st.video("Breaking News Video.mp4")
 
@@ -147,3 +165,4 @@ def main():
 # Required to let Streamlit instantiate our web app.  
 if __name__ == '__main__':
     main()
+
