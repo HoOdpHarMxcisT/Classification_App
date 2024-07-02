@@ -28,14 +28,31 @@ import joblib, os
 # Data dependencies
 import pandas as pd
 
-# Vectorizer
-# news_vectorizer = open("streamlit/tfidfvect.pkl", "rb")
-# test_cv = joblib.load(news_vectorizer)  # loading your vectorizer from the pkl file
+# Function to load vectorizer and models
+def load_resources():
+    # Load vectorizer
+    vectorizer_path = "tfidf_vectorizer.pkl"
+    with open(vectorizer_path, 'rb') as f:
+        vectorizer = joblib.load(f)
+    
+    # Load models
+    mlr_model_path = "mlr_model.pkl"
+    nb_model_path = "nb_model.pkl"
+    gbc_model_path = "gbc_model.pkl"
+    
+    mlr_model = joblib.load(open(mlr_model_path, "rb"))
+    nb_model = joblib.load(open(nb_model_path, "rb"))
+    gbc_model = joblib.load(open(gbc_model_path, "rb"))
+    
+    return vectorizer, mlr_model, nb_model, gbc_model
 
-# Load your raw data
-# raw = pd.read_csv("streamlit/train.csv")
+# Load raw data
+def load_raw_data():
+    raw_data_path = "test.csv"
+    raw_data = pd.read_csv(raw_data_path)
+    return raw_data
 
-# The main function where we will build the actual app
+# Main function where we will build the actual app
 def main():
     """News Classifier App with Streamlit"""
 
@@ -82,17 +99,21 @@ def show_home_page():
     """)
 
     if st.button("Classify"):
-        # Transforming user input with vectorizer
-        # vect_text = test_cv.transform([news_text]).toarray()
-        # Load your .pkl file with the model of your choice + make predictions
-        # Try loading in multiple models to give the user a choice
-        predictor = joblib.load(open(os.path.join("streamlit/Logistic_regression.pkl"), "rb"))
-        prediction = predictor.predict([news_text])
+        # Load resources
+        vectorizer, mlr_model, nb_model, gbc_model = load_resources()
 
-        # When model has successfully run, will print prediction
-        # You can use a dictionary or similar structure to make this output
-        # more human interpretable.
-        st.success("Text Categorized as: {}".format(prediction))
+        # Transforming user input with vectorizer
+        vect_text = vectorizer.transform([news_text]).toarray()
+
+        # Make predictions
+        mlr_prediction = mlr_model.predict(vect_text)
+        nb_prediction = nb_model.predict(vect_text)
+        gbc_prediction = gbc_model.predict(vect_text)
+
+        # Display predictions
+        st.success("MLR Model Prediction: {}".format(mlr_prediction))
+        st.success("NB Model Prediction: {}".format(nb_prediction))
+        st.success("GBC Model Prediction: {}".format(gbc_prediction))
 
 
 def show_overview_page():
@@ -153,10 +174,10 @@ def show_about_us_page():
     - **Naledi Mogafe Mogale** - Data Scientist
     - **Koena Mcdonald Mahladisa** - Data Scientist
     """)
-# Contact Us
+    
+    # Contact Us section
     st.markdown("### Contact Us:")
     st.markdown("For inquiries, please contact us at [info@datainsight.com](mailto:info@datainsight.com).")
- 
 
 
 # Required to let Streamlit instantiate our web app.
