@@ -48,15 +48,15 @@ def main():
     st.subheader("Analyzing news articles")
 
     # Define navigation menu options in the desired order
-    menu = ["Home", "Information", "Prediction", "About Us"]
+    menu = ["Home", "Instructions", "Prediction", "About Us"]
     choice = st.sidebar.selectbox('Navigation', menu)
 
     # Building out the selected page
     if choice == 'Home':
         show_homepage()
 
-    elif choice == 'Information':
-        show_information_page()
+    elif choice == 'Instructions':
+        show_instructions_page()
 
     elif choice == 'Prediction':
         show_prediction_page()
@@ -68,7 +68,7 @@ def main():
 def show_homepage():
     st.info("Welcome to DataInsight Solutions!")
     st.markdown("This app allows you to classify news articles using machine learning models. "
-                "You can navigate to the Prediction page to classify new articles or visit the Information page to learn more about the app.")
+                "You can navigate to the Prediction page to classify new articles or visit the Instructions page to learn more about the app.")
 
     # Insert an image on the homepage
     st.image("Homepage.jpg", caption="The power of predictive analysis is within your reach", use_column_width=True)
@@ -95,7 +95,7 @@ def show_homepage():
     st.video("Breaking News Video.mp4")
 
 
-def show_information_page():
+def show_instructions_page():
     st.info("How the App Works")
     st.markdown("""
     ### How to Use the News Classifier App
@@ -126,7 +126,7 @@ def show_information_page():
     - **Output:**
       The predicted category is displayed to the user in a human-readable format.
 
-    ### Whyshould you use our News Classifier App
+    ### Why should you use our News Classifier App?.
 
     - **Quick and Accurate Classification:**
       Our app leverages advanced machine learning algorithms to provide fast and accurate classification of news articles.

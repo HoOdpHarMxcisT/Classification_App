@@ -48,15 +48,15 @@ def main():
     st.subheader("Analyzing news articles")
 
     # Define navigation menu options in the desired order
-    menu = ["Home", "Information", "Prediction", "About Us"]
+    menu = ["Home", "Instructions", "Prediction", "About Us"]
     choice = st.sidebar.selectbox('Navigation', menu)
 
     # Building out the selected page
     if choice == 'Home':
         show_homepage()
 
-    elif choice == 'Information':
-        show_information_page()
+    elif choice == 'Instructions':
+        show_instructions_page()
 
     elif choice == 'Prediction':
         show_prediction_page()
@@ -68,7 +68,7 @@ def main():
 def show_homepage():
     st.info("Welcome to DataInsight Solutions!")
     st.markdown("This app allows you to classify news articles using machine learning models. "
-                "You can navigate to the Prediction page to classify new articles or visit the Information page to learn more about the app.")
+                "You can navigate to the Prediction page to classify new articles or visit the Instructions page to learn more about the app.")
 
     # Insert an image on the homepage
     st.image("Homepage.jpg", caption="The power of predictive analysis is within your reach", use_column_width=True)
@@ -88,14 +88,14 @@ def show_homepage():
     - **Readers:** More personalized and engaging news content.
     """)
 
-    st.markdown("**Grow your business with us** [Click here to find out more](#about-us)")
+    st.markdown("**Grow your business with us.** [Click here to find out more](#About_Us)")
 
     # Insert video on the homepage
     st.subheader("Reporting live: Political Scandal Unveiled, High-level Corruption Exposed")
     st.video("Breaking News Video.mp4")
 
 
-def show_information_page():
+def show_instructions_page():
     st.info("How the App Works")
     st.markdown("""
     ### How to Use the News Classifier App
@@ -126,7 +126,7 @@ def show_information_page():
     - **Output:**
       The predicted category is displayed to the user in a human-readable format.
 
-    ### Benefits of Using the App
+    ### Why should you use our News Classifier App?.
 
     - **Quick and Accurate Classification:**
       Our app leverages advanced machine learning algorithms to provide fast and accurate classification of news articles.
@@ -171,17 +171,17 @@ def show_about_us_page():
 
     From our modest beginnings, we have grown into a trusted partner, employing and training over 200 data practitioners. Our foundation is built on innovation, integrity, and a client-centric approach, driving us to continually explore new frontiers in data science, machine learning, and artificial intelligence.
 
-    ### Purpose of DataInsight Solutions
+    ### Our Purpose
 
     At DataInsight Solutions, our purpose is to empower businesses with actionable insights derived from data. We believe in harnessing the power of data science and analytics to solve complex challenges, drive innovation, and enable informed decision-making across industries.
 
-    ### Vision of DataInsight Solutions
+    ### Our Vision
 
     Our vision at DataInsight Solutions is to be a leading provider of data-driven solutions globally. We strive to be recognized for our expertise in transforming data into valuable insights that drive business growth, enhance operational efficiency, and deliver exceptional value to our clients.
     """)
 
     # Move services information here
-    st.markdown("### Services We Offer:")
+    st.markdown("### Our Services:")
     st.markdown("""
     - **Data Strategy and Consulting**
     - **Machine Learning and Artificial Intelligence**
@@ -192,20 +192,6 @@ def show_about_us_page():
     - **Advanced Analytics**
     - **Training and Workshops**
     """)
-
-    # Add the team section
-    st.markdown("### The Minds Behind the App")
-    
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        st.image("Lead Data scientist.jpg", caption="Clement Mphethi", width=200)
-    
-    with col2:
-        st.image("Project Manager.jpg", caption="Nolwazi Mndebele", width=200)
-    
-    with col3:
-        st.image("Github Manager.jpg", caption="Tshepiso Mudau", width=200)
 
 
 # Required to let Streamlit instantiate our web app.
