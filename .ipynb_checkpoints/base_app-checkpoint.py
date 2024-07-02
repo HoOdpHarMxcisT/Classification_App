@@ -78,7 +78,6 @@ def main():
     elif choice == 'About Us':
         show_about_us_page()
 
-
 def show_home_page():
     st.info("**Prediction with ML Models**")
     # Creating a text box for user input
@@ -91,12 +90,18 @@ def show_home_page():
     1. **Enter Your Text:**
        - In the text area provided above, type or paste the news article you want to classify.
 
-    2. **Classify the Text:**
-       - Click the "Classify" button below the text area. The app will use a pre-trained machine learning model to analyze and classify the text.
+    2. **Select Model:**
+       - Choose a model from the dropdown below to classify the text.
 
-    3. **View the Result:**
-       - The classification result will be displayed on the screen, indicating the category of the news article.
+    3. **Classify the Text:**
+       - Click the "Classify" button. The app will use the selected model to analyze and classify the text.
+
+    4. **View the Result:**
+       - The classification result will be displayed on the screen, indicating the predicted category of the news article.
     """)
+
+    # Model selection dropdown
+    model_choice = st.selectbox("Choose Model", ("Logistic Regression", "Naive Bayes", "Gradient Boosting"))
 
     if st.button("Classify"):
         # Load resources
@@ -105,16 +110,16 @@ def show_home_page():
         # Transforming user input with vectorizer
         vect_text = vectorizer.transform([news_text]).toarray()
 
-        # Make predictions
-        mlr_prediction = mlr_model.predict(vect_text)
-        nb_prediction = nb_model.predict(vect_text)
-        gbc_prediction = gbc_model.predict(vect_text)
+        # Make predictions based on selected model
+        if model_choice == "Logistic Regression":
+            prediction = mlr_model.predict(vect_text)
+        elif model_choice == "Naive Bayes":
+            prediction = nb_model.predict(vect_text)
+        elif model_choice == "Gradient Boosting":
+            prediction = gbc_model.predict(vect_text)
 
-        # Display predictions
-        st.success("MLR Model Prediction: {}".format(mlr_prediction))
-        st.success("NB Model Prediction: {}".format(nb_prediction))
-        st.success("GBC Model Prediction: {}".format(gbc_prediction))
-
+        # Display predicted category
+        st.success("Predicted Category: {}".format(prediction[0]))  # Assuming prediction is a single value or array
 
 def show_overview_page():
     st.info("**Proudly brought to you by DataInsight Solutions!**")
@@ -144,7 +149,6 @@ def show_overview_page():
     # Insert video on the homepage
     st.subheader("Reporting live: Political Scandal Unveiled, High-level Corruption Exposed")
     st.video("Breaking News Video.mp4")
-
 
 def show_about_us_page():
     st.info("**About Us**")
@@ -178,7 +182,6 @@ def show_about_us_page():
     # Contact Us section
     st.markdown("### Contact Us:")
     st.markdown("For inquiries, please contact us at [info@datainsight.com](mailto:info@datainsight.com).")
-
 
 # Required to let Streamlit instantiate our web app.
 if __name__ == '__main__':
