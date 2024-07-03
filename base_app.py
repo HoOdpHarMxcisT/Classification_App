@@ -46,12 +46,6 @@ def load_resources():
     
     return vectorizer, mlr_model, nb_model, gbc_model
 
-# Load raw data
-def load_raw_data():
-    raw_data_path = "test.csv"
-    raw_data = pd.read_csv(raw_data_path)
-    return raw_data
-
 # Main function where we will build the actual app
 def main():
     """News Classifier App with Streamlit"""
@@ -113,13 +107,55 @@ def show_home_page():
         # Make predictions based on selected model
         if model_choice == "Logistic Regression":
             prediction = mlr_model.predict(vect_text)
+            category_map = {
+            0: "Education",
+            1: "Business",
+            2: "Technology",
+            3: "Sport",
+            4: "Entertainment",
+            # Add more categories as needed
+            }
         elif model_choice == "Naive Bayes":
             prediction = nb_model.predict(vect_text)
+            category_map = {
+            0: "Education",
+            1: "Business",
+            2: "Technology",
+            3: "Sport",
+            4: "Entertainment",
+            # Add more categories as needed
+            }
         elif model_choice == "Gradient Boosting":
             prediction = gbc_model.predict(vect_text)
+            category_map = {
+            0: "Education",
+            1: "Business",
+            2: "Technology",
+            3: "Sport",
+            4: "Entertainment",
+            # Add more categories as needed
+            }
+
+        # Get predicted category name
+        predicted_category = category_map.get(prediction[0], "Unknown")  # Default to "Unknown" if prediction not found
 
         # Display predicted category
-        st.success("Predicted Category: {}".format(prediction[0]))  # Assuming prediction is a single value or array
+        st.success("Predicted Category: {}".format(predicted_category))
+    
+    # Dropdown menu for word cloud visualizations
+    st.info("**Word Cloud Visualizations**")
+    wc_choice = st.selectbox("Choose Category for Word Cloud", ("Education", "Technology", "Business", "Entertainment", "Sport"))
+    wc_images = {
+        "Education": "WordCloud_Education.png",
+        "Technology": "WordCloud_Technology.png",
+        "Business": "WordCloud_Business.png",
+        "Entertainment": "WordCloud_Entertainment.png",
+        "Sport": "WordCloud_Sport.png"
+    }
+
+    # Display the selected word cloud image
+    if wc_choice in wc_images:
+        st.image(wc_images[wc_choice], use_column_width=True)
 
 def show_overview_page():
     st.info("**Proudly brought to you by DataInsight Solutions!**")
