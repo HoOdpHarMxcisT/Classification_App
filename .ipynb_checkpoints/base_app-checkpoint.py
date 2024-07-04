@@ -1,7 +1,6 @@
 """
-
     Simple Streamlit webserver application for serving developed classification
-	models.
+    models.
 
     Author: ExploreAI Academy.
 
@@ -13,12 +12,12 @@
     ---------------------------------------------------------------------
 
     Description: This file is used to launch a minimal streamlit web
-	application. You are expected to extend the functionality of this script
-	as part of your predict project.
+    application. You are expected to extend the functionality of this script
+    as part of your predict project.
 
-	For further help with the Streamlit framework, see:
+    For further help with the Streamlit framework, see:
 
-	https://docs.streamlit.io/en/latest/
+    https://docs.streamlit.io/en/latest/
 
 """
 # Streamlit dependencies
@@ -62,7 +61,7 @@ def main():
     st.subheader("Analyzing news articles")
 
     # Define navigation menu options in the desired order
-    menu = ["Home", "Overview", "About Us"]
+    menu = ["Home", "Overview", "Insights", "About Us"]
     choice = st.sidebar.selectbox('Navigation', menu)
 
     # Building out the selected page
@@ -71,6 +70,9 @@ def main():
 
     elif choice == 'Overview':
         show_overview_page()
+
+    elif choice == 'Insights':
+        show_insights_page()
 
     elif choice == 'About Us':
         show_about_us_page()
@@ -144,21 +146,6 @@ def show_home_page():
 
         # Display predicted category
         st.success("Predicted Category: {}".format(predicted_category))
-    
-    # Dropdown menu for word cloud visualizations
-    st.info("**Word Cloud Visualizations**")
-    wc_choice = st.selectbox("Choose Category for Word Cloud", ("Education", "Technology", "Business", "Entertainment", "Sport"))
-    wc_images = {
-        "Education": "WordCloud_Education.png",
-        "Technology": "WordCloud_Technology.png",
-        "Business": "WordCloud_Business.png",
-        "Entertainment": "WordCloud_Entertainment.png",
-        "Sport": "WordCloud_Sport.png"
-    }
-
-    # Display the selected word cloud image
-    if wc_choice in wc_images:
-        st.image(wc_images[wc_choice], use_column_width=True)
 
 def show_overview_page():
     st.info("**Proudly brought to you by DataInsight Solutions!**")
@@ -188,6 +175,21 @@ def show_overview_page():
     # Insert video on the homepage
     st.subheader("Reporting live: Political Scandal Unveiled, High-level Corruption Exposed")
     st.video("Breaking News Video.mp4")
+
+def show_insights_page():
+    st.info("**Word Cloud Visualizations**")
+    wc_choice = st.selectbox("Choose Category for Word Cloud", ("Education", "Technology", "Business", "Entertainment", "Sport"))
+    wc_images = {
+        "Education": "WordCloud_Education.png",
+        "Technology": "WordCloud_Technology.png",
+        "Business": "WordCloud_Business.png",
+        "Entertainment": "WordCloud_Entertainment.png",
+        "Sport": "WordCloud_Sport.png"
+    }
+
+    # Display the selected word cloud image
+    if wc_choice in wc_images:
+        st.image(wc_images[wc_choice], use_column_width=True)
 
 def show_about_us_page():
     st.info("**About Us**")
