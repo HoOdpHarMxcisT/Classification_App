@@ -1,7 +1,7 @@
 # Streamlit dependencies
-! pip install scikit-learn
+!pip install scikit-learn
 import pickle
-import sklearn
+#import scikit-learn as sklearn
 import streamlit as st
 import joblib, os
 
