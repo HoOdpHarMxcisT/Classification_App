@@ -21,7 +21,6 @@
 
 """
 # Streamlit dependencies
-pip install sklearn
 import pickle
 import sklearn
 import streamlit as st
@@ -190,6 +189,16 @@ def show_insights_page():
     # Display the selected word cloud image
     if wc_choice in wc_images:
         st.image(wc_images[wc_choice], use_column_width=True)
+        
+    # Distribution of Categories
+    if st.checkbox("Distribution of Categories"):
+        st.markdown("As observed in the analysis below, **Education** is the top category, with more than 1400 entries. From this plot, we further observe that **Sport** is the category with the least entries, less than 800.")
+        st.image("category_distribution.png")
+
+    # Text Length Analysis
+    if st.checkbox("Text Length Analysis"):
+        st.markdown("The Text length analysis below shows that descriptions vary widely in length, with most content entries being concise and under 2000 characters. Headlines are typically shorter, with most containing less than 100 characters, though there is some variation in their lengths.")
+        st.image("text_length_analysis.png")
 
 def show_about_us_page():
     st.info("**About Us**")
