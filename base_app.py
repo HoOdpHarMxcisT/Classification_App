@@ -1,5 +1,5 @@
 # Streamlit dependencies
-! pip install sklearn
+pip install scikit-learn
 import pickle
 import sklearn
 import streamlit as st
